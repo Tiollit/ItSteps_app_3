@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	srand(time(NULL));
 	int b, c, sump = 0, sumk = 0;
 	string s;
@@ -18,6 +19,7 @@ int main()
 	{
 		if (s == "y")
 		{
+			SetConsoleTextAttribute(hConsole, 5);
 			cout << "Make your turn: " << endl;
 			system("pause");
 			b = rand() % 5 + 1;
@@ -27,10 +29,11 @@ int main()
 		}
 		else if (s == "n")
 		{
+			SetConsoleTextAttribute(hConsole, 6);
 			cout << "Now computer turn: " << endl;
 			system("pause");
-			b = rand() % 6;
-			c = rand() % 6;
+			b = rand() % 5 + 1;
+			c = rand() % 5 + 1;
 			sumk += b;
 			sumk += c;			
 		}
@@ -133,13 +136,26 @@ int main()
 		if (s == "y") s = "n";
 		else s = "y";
 	}
+	SetConsoleTextAttribute(hConsole, 7);
 	cout << "End of the game - let's see total points: " << endl;
 	system("pause");
 	cout << "You total points: " << sump << endl;
 	cout << "Computer total points: " << sumk << endl;
-	if (sump > sumk) cout << "You Win! Congratulations" << endl;
-	else if (sump < sumk) cout << "Sorry. You lose the game" << endl;
-	else cout << "This is draw. Nobody wins. Play another game." << endl;
-
+	if (sump > sumk)
+	{
+		SetConsoleTextAttribute(hConsole, 5);
+		cout << "You Win! Congratulations!" << endl;
+	}
+	else if (sump < sumk)
+	{
+		SetConsoleTextAttribute(hConsole, 6);
+		cout << "Sorry. You lose the game." << endl;
+	}
+	else
+	{
+		SetConsoleTextAttribute(hConsole, 4);
+		cout << "This is draw. Nobody wins. Play another game." << endl;
+	}
+	SetConsoleTextAttribute(hConsole, 7);
 	return 0;
 }
