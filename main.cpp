@@ -10,8 +10,8 @@ int main()
   	int newar[100];
 	for (int i = 0; i < 100; i++)
 	{
-		newar[i] = rand() % 1000000 - 500000;
-
+		newar[i] = rand() % 100000 - 5000;
+		cout << newar[i] << " ";
 	}
 	return 0;
 }
